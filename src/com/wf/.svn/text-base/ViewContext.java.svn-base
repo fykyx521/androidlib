@@ -13,26 +13,26 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
-//注释处理类
+
 public class ViewContext<T> {
 
 	private String TAG="com.careland.ViewUtil";
 	private static ThreadLocal<ViewContext> context=new ThreadLocal<ViewContext>();
 	
 	private  T acitivity;
-	private Map<String,Object> fields;//acitvity 中 所有属性
+	private Map<String,Object> fields;//acitvity 锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷
 	
 	public ViewContext(T acitivity)
 	{
 		this.acitivity=acitivity;
 		fields=new HashMap<String,Object>();
 	}
-	//获取当前的Activity 
+	//锟斤拷取锟斤拷前锟斤拷Activity 
 	public T getCurrentActivity()
 	{
 		return acitivity;
 	}
-	//保存 和获取 当前Activity的成员变量
+	//锟斤拷锟斤拷 锟酵伙拷取 锟斤拷前Activity锟侥筹拷员锟斤拷锟斤拷
 	public Map<String,Object> getFields()
 	{
 		return fields;
@@ -59,7 +59,7 @@ public class ViewContext<T> {
 	{
 	      context.set(ctx);
 	}
-	//解析注释   注入成员变量实例 绑定事件
+	//澶勭悊娉ㄩ噴
 	protected void HandlerAnnotation(Field field,ViewAdapter ctx)
 	{
 		
@@ -72,7 +72,7 @@ public class ViewContext<T> {
 			 try {
 				field.setAccessible(true);
 				View viewobj=ctx.findViewById(viewId);
-				field.set(ctx, ctx.findViewById(viewId));
+				field.set(ctx.getInstance(), viewobj);
 				this.put(field.getName(),viewobj);//
 				String touch=fv.touch();
 				String click=fv.click();
@@ -83,21 +83,21 @@ public class ViewContext<T> {
 					View view=(View) viewobj;
 					if(notNullOrEmpty(touch))
 					{
-						view.setOnTouchListener(new ViewEventHandler(ctx,touch,className));
+						view.setOnTouchListener(new ViewEventHandler(ctx.getInstance(),touch,className));
 					}
 					if(notNullOrEmpty(click))
 					{
-						view.setOnClickListener(new ViewEventHandler(ctx,click,className));
+						view.setOnClickListener(new ViewEventHandler(ctx.getInstance(),click,className));
 					}
 					if(notNullOrEmpty(longclick))
 					{
-						view.setOnLongClickListener(new ViewEventHandler(ctx,click,className));
+						view.setOnLongClickListener(new ViewEventHandler(ctx.getInstance(),longclick,className));
 					}
 					if(notNullOrEmpty(itemclick))
 					{
 						if(view instanceof AdapterView)
 						{
-							((AdapterView)view).setOnItemClickListener(new ViewEventHandler(ctx,click,className));
+							((AdapterView)view).setOnItemClickListener(new ViewEventHandler(ctx.getInstance(),itemclick,className));
 						}
 					}
 					
@@ -109,7 +109,7 @@ public class ViewContext<T> {
 				}
 				
 			 } catch (Exception e) {
-				Log.d(TAG, "自动初始化View失败",e);
+				Log.d(TAG, "",e);
 			 }
 			 
 		 }
@@ -117,7 +117,12 @@ public class ViewContext<T> {
 	
 	class ViewAdapter<A>
 	{
+		
 		private A viewAdapter;
+		public ViewAdapter(A viewAdapter)
+		{
+			this.viewAdapter=viewAdapter;
+		}
 		public View findViewById(int id)
 		{
 			if(viewAdapter instanceof View)
@@ -126,6 +131,10 @@ public class ViewContext<T> {
 			}
 			return ((Activity) viewAdapter).findViewById(id);
 		}
+		public A getInstance()
+		{
+			return viewAdapter;
+		}
 	}
 	
 	public void GetElement(Object ctx)
@@ -133,7 +142,7 @@ public class ViewContext<T> {
 		 Field[] fields=ctx.getClass().getDeclaredFields();
 		 for(Field field:fields)
 		 {  
-			 this.HandlerAnnotation(field, new ViewAdapter<Object>());
+			 this.HandlerAnnotation(field, new ViewAdapter<Object>(ctx));
 		 }
 	}
 }

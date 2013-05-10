@@ -14,15 +14,15 @@ import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
-//对各种事件的处理
+//锟皆革拷锟斤拷锟铰硷拷锟侥达拷锟斤拷
 public class ViewEventHandler implements OnClickListener, 
 OnTouchListener,OnItemClickListener,
 OnLongClickListener {
 
 	private String TAG="com.wf.ViewHandler";
-	private Object handler; //当前实例  默认activity 
-	private String methodName; //要执行的目标方法 
-	private String handlerClass;//要执行的目标类 
+	private Object handler; //锟斤拷前实锟斤拷  默锟斤拷activity 
+	private String methodName; //要执锟叫碉拷目锟疥方锟斤拷 
+	private String handlerClass;//要执锟叫碉拷目锟斤拷锟斤拷 
 	public ViewEventHandler(Object handler, String method,String handlerClass) {
 		this.handler=handler;
 		this.methodName=method;
@@ -33,7 +33,7 @@ OnLongClickListener {
 		this(handler,method,"");
 	}
 	/***
-	 * touch 处理事件
+	 * touch 锟斤拷锟斤拷锟铰硷拷
 	 * */
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -41,7 +41,7 @@ OnLongClickListener {
 		return (Boolean) method.invoke(v,event);
 	}
 	/**
-	 *  click处理事件
+	 *  click锟斤拷锟斤拷锟铰硷拷
 	 * **/
 	@Override
 	public void onClick(View v) {
@@ -49,7 +49,7 @@ OnLongClickListener {
 	    method.invoke(v);
 	}
 	/**
-	 * 执行itemClick事件
+	 * 执锟斤拷itemClick锟铰硷拷
 	 * */
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -59,7 +59,7 @@ OnLongClickListener {
 		
 	}
 	/**
-	 * 执行Longclick事件
+	 * 执锟斤拷Longclick锟铰硷拷
 	 * */
 	@Override
 	public boolean onLongClick(View v) {
@@ -67,7 +67,7 @@ OnLongClickListener {
 		return (Boolean) method.invoke(v);
 	}
 	
-	//调用目标方法类
+	//锟斤拷锟斤拷目锟疥方锟斤拷锟斤拷
 	class ReflectMethod
 	{
 		public Object instance;

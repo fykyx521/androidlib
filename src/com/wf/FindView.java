@@ -14,11 +14,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FindView  {
 	int id();  
-	String touch() default "";//touch事件
-	String click() default ""; //onclick事件
+	String touch() default "";//touch锟铰硷拷
+	String click() default ""; //onclick锟铰硷拷
 	String dbclick() default "";
-	String itemclick() default "";//item click事件
-	String longclick() default ""; // long click事件
-	String className() default ""; //调用的目标类全名
-	
+	String itemclick() default "";//item click锟铰硷拷
+	String longclick() default ""; // long click锟铰硷拷
+	String className() default ""; //锟斤拷锟矫碉拷目锟斤拷锟斤拷全
 }

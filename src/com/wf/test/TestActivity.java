@@ -15,11 +15,11 @@ import android.widget.Button;
 public class TestActivity extends WfAndroidLibActivity {
 	
 	 
-	 @FindView(click="btn1Click", id = R.id.btn1) //标注ID,绑定当前TestActivity的btn1Click方法
+	 //@FindView(click="btn1Click", id = R.id.btn1) //标注ID,绑定当前TestActivity的btn1Click方法
 	 private Button btn1;
 	 
 	 //绑定 TestHandler中的 btn2Click方法
-	 @FindView(click="btn2Click",className="com.wf.test.TestHandler", id = R.id.btn2)
+	 //@FindView(click="btn2Click",className="com.wf.test.TestHandler", id = R.id.btn2)
 	 private Button btn2;
 	 
 	 public void onCreate(Bundle savedInstanceState) {

@@ -8,7 +8,7 @@ import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
-//Activity 基类  注入基类 绑定事件
+//
 public class WfAndroidLibActivity extends Activity {
     /** Called when the activity is first created. */
 	private String TAG="com.careland.WfAndroidLibActivity";
@@ -48,7 +48,7 @@ public class WfAndroidLibActivity extends Activity {
     	GetElement();
     }
     /**
-     * 注入属性实例 绑定事件
+     * 
      * **/
     protected void GetElement()
     {

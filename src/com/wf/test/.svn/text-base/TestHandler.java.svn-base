@@ -15,7 +15,7 @@ public class TestHandler{
 	
 	
 	
-	
+
 	public void btn2Click(View view)
 	{
 		//ªÒ»°btn1 
